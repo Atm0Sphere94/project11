@@ -1,5 +1,7 @@
+'use strict'
 
-class Popup {
+
+export default class Popup {
 
     constructor(popupElement) {
         this.popupElement = popupElement;
@@ -38,7 +40,7 @@ class Popup {
     } 
 }   
 
-class Form extends Popup {
+export class Form extends Popup {
 
     constructor(popupElement, validator, container, api) {
         super(popupElement);

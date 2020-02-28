@@ -1,6 +1,6 @@
+'use strict'
 
-
-class Api {
+export default class Api {
 
     constructor(config) {
         this.cohortId = config.cohortId;

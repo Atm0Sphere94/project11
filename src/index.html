@@ -11,7 +11,7 @@
 <body>
   <div class='root'>
     <header class='header root__section'>
-      <img src="<%=require('./images/logo.svg')%>" alt='mesto logo' class='logo'>
+      <img src="<%=require('./images/logo.svg').default%>" alt='mesto logo' class='logo'>
     </header>
     <div class='profile root__section'>
       <div class='user-info'>
@@ -29,7 +29,7 @@
     </div>
     <div class='popup' id='newplace'>
       <div class='popup__content popup__content_type_form'>
-        <img src="<%=require('./images/close.svg')%>" alt='close' class='popup__close'>
+        <img src="<%=require('./images/close.svg').default%>" alt='close' class='popup__close'>
         <h3 class='popup__title'>Новое место</h3>
         <form class='popup__form' name='new' action='/' method='GET'>
             <input type='text' name='name' class='popup__input popup__input_type_name' placeholder='Название' required minlength='2' maxlength='30'>
@@ -43,7 +43,7 @@
 
     <div class='popup' id='edit'>
       <div class='popup__content popup__content_type_form'>
-        <img src="<%=require('./images/close.svg')%>" alt='close' class='popup__close'>
+        <img src="<%=require('./images/close.svg').default%>" alt='close' class='popup__close'>
         <h3 class='popup__title'>Редактировать профиль</h3>
         <form class='popup__form' name='editinfo' action='/' method='GET'>
           <input type='text' name='name' class='popup__input popup__input_type_name' placeholder='Имя' required minlength='2' maxlength='30'>
@@ -57,7 +57,7 @@
     
     <div class='popup' id='picture'>
       <div class='popup__content popup__content_type_image'>
-        <img src="<%=require('./images/close.svg')%>" alt='close' class='popup__close'>
+        <img src="<%=require('./images/close.svg').default%>" alt='close' class='popup__close'>
         <img class='popup__image' alt='large image'>
       </div>
     </div>
@@ -77,9 +77,6 @@
     </div>
   </template>
   <!-- конец шаблона. -->
-
-
-
 </div>
 <script type="module" src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>

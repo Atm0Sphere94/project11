@@ -1,8 +1,8 @@
+'use strict'
 
+export default class CardList {
 
-class CardList {
-
-    constructor(template, container, api) {
+    constructor(template, container, api, newCard) {
         this.api = api;
         this.getCards = this.api.getCards;
         this.button = document.forms.new.querySelector('.popup__button');
@@ -32,6 +32,12 @@ class CardList {
             owner: {id: ''}}, this.template, this.api, this.container);
         customCard.create();
         this.api.postCardToServer(customCard.name, customCard.link)
+        /*
+            Можно лучше: не нужно при добавлении одной карточки полностью перезапрашивать 
+            и перерерисовывать все карточки, в ответ на добавление карточки  сервер
+            возвращает данные добавленной карточки нужно просто добавить эту карточку в контейнер
+        
+        */
         .then( () => this.render())
         .catch( () => console.log('Cannot addCard, error: ' + err) )
         .finally( () => this.api.loadingButtonText(false, this.button, this.buttonText));

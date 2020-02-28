@@ -1,5 +1,7 @@
 
-class Card {
+'use strict'
+
+export default class Card {
 
     constructor(cardData, template, api, container) {
         this.name = cardData.name;
