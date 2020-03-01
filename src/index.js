@@ -1,10 +1,10 @@
 import Api from './scripts/api.js';
 import Card from './scripts/card.js';
 import CardList from './scripts/cardlist.js';
-import FormValidator from './scripts/formvalidator.js';
 import UserInfo from './scripts/userinfo.js';
-import Popup from './scripts/popup.js';
+import FormValidator from './scripts/formvalidator.js';
 import { Form } from './scripts/popup.js';
+import Popup from './scripts/popup.js';
 import './pages/index.css';
 
 //variables
@@ -37,7 +37,7 @@ const mestoApi = new Api(authData);
 const cardList = new CardList(document.getElementById('card-sample'), cardContainer, mestoApi);
 const editPopup = new Form(document.getElementById('edit'), formValidator(document.forms.editinfo), cardList, mestoApi);
 const placePopup = new Form(document.getElementById('newplace'), formValidator(document.forms.new), cardList, mestoApi);
-const picturePopup = new Popup(document.getElementById('picture'));
+//const picturePopup = new Popup(document.getElementById('picture'));
 const currentUserInfo = userInfo(document.forms.editinfo, mestoApi);
 
 //function calls

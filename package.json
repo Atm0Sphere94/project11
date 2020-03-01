@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch"
-  },
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
+    "deploy": "cross-env NODE_ENV=production gh-pages -d dist"
+ },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Atm0Sphere94/project11.git"
@@ -41,6 +42,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "jquery": "^3.4.1",
     "lodash": "^4.17.15"
   }
 }
