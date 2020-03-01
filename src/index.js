@@ -27,14 +27,14 @@ openPlaceFormButton.addEventListener('click', () => {
 });
 
 //functions
-const userInfo = (form, api) => new UserInfo(form, api);
+const userInfo = (popupElement, validator, container, api, userInfo) => new UserInfo(popupElement, validator, container, api, userInfo);
 const newCard = (cardData, template, api, container) => new Card(cardData, template, api, container);
 const formValidator = (form) => new FormValidator(form);
 
 //initializing class instances
 
 const mestoApi = new Api(authData);
-const cardList = new CardList(document.getElementById('card-sample'), cardContainer, mestoApi);
+const cardList = new CardList(document.getElementById('card-sample'), cardContainer, mestoApi, newCard);
 const editPopup = new Form(document.getElementById('edit'), formValidator(document.forms.editinfo), cardList, mestoApi);
 const placePopup = new Form(document.getElementById('newplace'), formValidator(document.forms.new), cardList, mestoApi);
 //const picturePopup = new Popup(document.getElementById('picture'));

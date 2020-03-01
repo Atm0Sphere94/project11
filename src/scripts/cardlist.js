@@ -24,7 +24,7 @@ export default class CardList {
         .catch( (err) => console.log('Failed to render cards. Reason: ' + err) );
     }
 
-    addCard(event) {
+    addCard(event, err) {
         
         event.preventDefault();
         const customCard = this.newCard({name: this.form.name.value, link: this.form.link.value, likes: [], 
