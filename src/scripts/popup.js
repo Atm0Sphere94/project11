@@ -43,13 +43,13 @@ export default class Popup {
 
 export class Form extends Popup {
 
-    constructor(popupElement, validator, container, api) {
+    constructor(popupElement, validator, container, api, userInfo) {
         super(popupElement);
         this.api = api;
         this.form = this.popupElement.querySelector('.popup__form');
         this.submitButton = this.form.querySelector('.popup__button');
         this.validity = validator;
-        this.userInfo = userInfo(this.form, this.api);
+        this.userInfo = userInfo;
         this.checkInput = (event) => this.validity.checkInputValidity(event);
         this.setButton = () => this.validity.setSubmitButtonState();
         this.addCardOrInfo = (event) => {

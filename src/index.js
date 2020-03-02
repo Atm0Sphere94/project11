@@ -27,7 +27,7 @@ openPlaceFormButton.addEventListener('click', () => {
 });
 
 //functions
-const userInfo = (popupElement, validator, container, api, userInfo) => new UserInfo(popupElement, validator, container, api, userInfo);
+const userInfo = (popupElement, validator, container, api) => new UserInfo (popupElement, validator, container, api);
 const newCard = (cardData, template, api, container) => new Card(cardData, template, api, container);
 const formValidator = (form) => new FormValidator(form);
 
