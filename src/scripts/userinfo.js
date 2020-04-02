@@ -1,5 +1,5 @@
 'use strict';
-/* encompasses info in the 'profile' div */
+
 
 export default class UserInfo {
 
@@ -15,7 +15,7 @@ export default class UserInfo {
         this.avatar = document.querySelector('.user-info__photo');
     }
 
-    //changes name and info values on page
+   
     setUserInfo(event) {
         event.preventDefault();
         this.name.textContent = this.nameField.value;
@@ -23,7 +23,7 @@ export default class UserInfo {
         this.updateUserInfo();
     }
 
-    //sends changes to server
+    
     updateUserInfo() {
         this.api.loadingButtonText(true, this.button, this.buttonText);
         this.api.updateForm(this.name.textContent, this.info.textContent)
@@ -32,13 +32,13 @@ export default class UserInfo {
         .finally( () => this.api.loadingButtonText(false, this.button, this.buttonText));        
     }
 
-    //sends updated avatar url to server
+    
     updateAvatar(url) {
         this.avatar.style.backgroundImage = `url(${url})`;
         this.api.changeAvatar(url);  
     }
 
-    //requests user info from server
+    
     loadUserInfo() {
         this.api.getUserInfo()
         .then( (res) => {
