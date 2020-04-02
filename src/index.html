@@ -5,8 +5,8 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <meta http-equiv='X-UA-Compatible' content='ie=edge'>
   <title>Mesto</title>
-  <link rel='stylesheet' href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
-
+  <link rel='stylesheet' href='./<%=htmlWebpackPlugin.files.chunks.main.css%>'>
+  <script src='./<%=htmlWebpackPlugin.files.chunks.main.entry%>' defer></script>
 </head>
 <body>
   <div class='root'>
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class='places-list root__section'>
-      <!-- место для карточек -->
+      <!-- all cards go here -->
     </div>
     <div class='popup' id='newplace'>
       <div class='popup__content popup__content_type_form'>
@@ -77,7 +77,5 @@
     </div>
   </template>
   <!-- конец шаблона. -->
-</div>
-<script type="module" src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
-</body>
+  </body>
 </html>

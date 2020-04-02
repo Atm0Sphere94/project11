@@ -1,14 +1,14 @@
-'use strict'
-
+'use strict';
+/* encompasses all popups: containing forms or just a large verdion of picture from card */
 
 export default class Popup {
 
-    constructor(popupElement) {
-        this.popupElement = popupElement;
-        this.closeButton = popupElement.querySelector('.popup__close');
-        this.picturePopup = document.getElementById('picture');
+    constructor(popupData) {
+        this.popupElement = popupData.element;
+        this.closeButton = this.popupElement.querySelector('.popup__close');
+        this.pictureElement = document.getElementById('picture');
         this.removeImage = () => {
-            if (this.popupElement === this.picturePopup) {
+            if (this.popupElement === this.pictureElement) {
                 this.popupElement.querySelector('.popup__image').removeAttribute('src');
             }
         }
@@ -28,10 +28,10 @@ export default class Popup {
             this.popupElement.removeEventListener('click', this.close);
             document.removeEventListener('keydown', this.close);
         }
-        if (event.type === 'keydown' && event.key === 'Escape') {
+        if (event.type === 'keydown' && event.key === 'Escape') {                                       //handles closing popup by clicking Esc
             closeHandler();
         } else if (event.type === 'click') {
-            if (event.target.closest('.popup__content') === null || event.target === self.closeButton) { //handles clicks
+            if (event.target.closest('.popup__content') === null || event.target === self.closeButton) { //handles clicks outside of popup area
                 closeHandler();
             }
         } else if (event.type === 'submit') {
@@ -39,38 +39,25 @@ export default class Popup {
         }
     } 
 }   
-
-
+ 
 export class Form extends Popup {
 
-    constructor(popupElement, validator, container, api, userInfo) {
-        super(popupElement);
-        this.api = api;
+    constructor(formData, functions) {
+        super(formData);
+        this.popupElement = formData.element;
+        this.validity = formData.validator;
+        this.container = formData.list;
+        this.api = formData.api;
         this.form = this.popupElement.querySelector('.popup__form');
         this.submitButton = this.form.querySelector('.popup__button');
-        this.validity = validator;
-        this.userInfo = userInfo;
+        this.userInfo = functions.userInfo({form: this.form, api: this.api,});
         this.checkInput = (event) => this.validity.checkInputValidity(event);
         this.setButton = () => this.validity.setSubmitButtonState();
-        this.addCardOrInfo = (event) => {
-            event.preventDefault();
-            if (!this.submitButton.hasAttribute('disabled')) {
-                if (this.form === document.forms.new) {
-                    this.container.addCard(event);
-                    this.close(event);
-                    this.submitButton.setAttribute('disabled', '');
-                } else if (this.form === document.forms.editinfo)
-                 {
-                    this.userInfo.setUserInfo(event);
-                }
-            }
-        }
         this.handlers = {
             checkInput: this.checkInput.bind(this),
             setButton: this.setButton.bind(this),
             addCardOrInfo: this.addCardOrInfo,
         };
-        this.container = container;
     }
 
     open() {
@@ -87,7 +74,6 @@ export class Form extends Popup {
         this.form.removeEventListener('input', this.checkInput);
         this.form.removeEventListener('keyup', this.setButton);
         this.form.removeEventListener('submit', this.handlers.addCardOrInfo);
-        //this.form.querySelector('.popup__button').setAttribute('disabled', '');
     }
 
     formReset() {
@@ -101,12 +87,26 @@ export class Form extends Popup {
         if (this.form === document.forms.editinfo) {
             const userName = document.querySelector('.user-info__name');
             const userJob = document.querySelector('.user-info__job');
-            this.form.name.value = userName.textContent; 
-            this.form.info.value = userJob.textContent;
+            this.form.name.value = userName.textContent;                    //setting default values 
+            this.form.info.value = userJob.textContent;                     //of edit form input fields
             this.setButton();
         }
         this.form.addEventListener('input', this.handlers.checkInput);
         this.form.addEventListener('keyup', this.handlers.setButton);
         this.form.addEventListener('submit', this.handlers.addCardOrInfo.bind(this));
+    }
+
+    addCardOrInfo(event) {
+        event.preventDefault();
+        if (!this.submitButton.hasAttribute('disabled')) {
+            if (this.form === document.forms.new) {
+                this.container.addCard(event);
+                this.close(event);
+                this.submitButton.setAttribute('disabled', '');
+            } else if (this.form === document.forms.editinfo) {
+                this.userInfo.setUserInfo(event);
+                this.close(event);
+            }
+        }
     }
 }
