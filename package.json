@@ -1,6 +1,6 @@
 {
   "name": "project11",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "2nd work of Infrastructure course",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/Atm0Sphere94/project11.git"
   },
-  "author": "",
+  "author": "Oleg Malyshev",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Atm0Sphere94/project11/issues"
