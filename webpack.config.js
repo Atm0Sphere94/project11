@@ -24,11 +24,12 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [
-            (isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
-            'css-loader', 
-            'postcss-loader'
-        ]
+        use: {
+          loader:'css-loader',
+          options: {
+              importLoaders: 2
+          } 
+      }
       },
       {
         test: /\.(png|jpg|gif|ico|svg)$/,
